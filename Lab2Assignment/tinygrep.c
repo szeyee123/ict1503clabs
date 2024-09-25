@@ -83,9 +83,15 @@ int main() {
     printf("Should text be matched to case-sensitive?\n");
     scanf(" %c", &case_sensitive);
     stdinflush();
+    
+    printf("Text: '%s'\n", text);
+    printf("Pattern: '%s'\n", pattern);
+    printf("Case Sensitive: %c\n", case_sensitive);
 
-    for (int i = 0; i <= text_len - pattern_len; i++) {
-        if (custom_strncmp(&text[i], pattern, pattern_len, case_sensitive == 'y')) {
+    int is_case_sensitive = (case_sensitive == 'y');
+
+    for (int i = 0; i <= strlen(text) - strlen(pattern); i++) {
+        if (custom_strncmp(&text[i], pattern, strlen(pattern), is_case_sensitive)) {
             match_position = i;  // Match found, store position
             break; 
         }
