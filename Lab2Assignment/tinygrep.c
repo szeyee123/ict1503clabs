@@ -83,10 +83,6 @@ int main() {
     printf("Should text be matched to case-sensitive?\n");
     scanf(" %c", &case_sensitive);
     stdinflush();
-    
-    printf("Text: '%s'\n", text);
-    printf("Pattern: '%s'\n", pattern);
-    printf("Case Sensitive: %c\n", case_sensitive);
 
     int is_case_sensitive = (case_sensitive == 'y');
 
