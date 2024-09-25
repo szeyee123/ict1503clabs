@@ -68,7 +68,7 @@ int main() {
     remove_newline(pattern);
     stdinflush();
 
-    printf("Should text be matched to case-sensitive? (Y/N)\n");
+    printf("Should text be matched to case-sensitive? \n");
     scanf(" %c", &case_sensitive);
 
     int text_len = strlen(text);
