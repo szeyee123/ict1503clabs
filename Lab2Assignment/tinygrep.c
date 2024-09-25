@@ -70,6 +70,7 @@ int main() {
 
     printf("Should text be matched to case-sensitive?\n");
     scanf(" %c", &case_sensitive);
+    stdinflush();
 
     int text_len = strlen(text);
     int pattern_len = strlen(pattern);
