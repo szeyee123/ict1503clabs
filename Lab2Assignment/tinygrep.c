@@ -58,25 +58,24 @@ int main() {
     char case_sensitive;
     int match_position = -1;
     
-    printf("Enter a text, up to 35 characters: \n");
+    printf("Enter a line of text up to 35 characters in length ->\n");
     fgets(text, MAX_TEXT_LENGTH + 1, stdin);
     remove_newline(text);
     stdinflush();
 
-    printf("Enter a pattern, up to 35 characters: \n");
+    printf("Enter a grepPattern to search for up to 35 characters in length ->\n");
     fgets(pattern, MAX_TEXT_LENGTH + 1, stdin);
     remove_newline(pattern);
     stdinflush();
 
-    printf("Should match be case-sensitive (Y/N)? \n");
+    printf("Should text be matched to case-sensitive? (Y/N)\n");
     scanf(" %c", &case_sensitive);
-    stdinflush();
 
     int text_len = strlen(text);
     int pattern_len = strlen(pattern);
 
     for (int i = 0; i <= text_len - pattern_len; i++) {
-        if (custom_strncmp(&text[i], pattern, pattern_len, case_sensitive == 'Y')) {
+        if (custom_strncmp(&text[i], pattern, pattern_len, case_sensitive == 'y')) {
             match_position = i;  // Match found, store position
             break; 
         }
@@ -85,7 +84,9 @@ int main() {
     // Output
     if (match_position != -1) {
         printf("Matches at position %d\n", match_position);
-    } else {
+    }
+    
+    else {
         printf("No match\n");
     }
 
