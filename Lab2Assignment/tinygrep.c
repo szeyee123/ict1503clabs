@@ -60,20 +60,29 @@ int main() {
     
     printf("Enter a line of text up to 35 characters in length ->\n");
     fgets(text, MAX_TEXT_LENGTH + 1, stdin);
-    remove_newline(text);
-    stdinflush();
+
+    int text_len = strlen(text);
+    if (text[text_len-1] == '\n') {
+        text[text_len-1] = '\0';
+    }
+    else {
+        stdinflush();
+    }
 
     printf("Enter a grepPattern to search for up to 35 characters in length ->\n");
     fgets(pattern, MAX_TEXT_LENGTH + 1, stdin);
-    remove_newline(pattern);
-    stdinflush();
+
+    int pattern_len = strlen(pattern);
+    if (pattern[pattern_len-1] == '\n') {
+        pattern[pattern_len-1] = '\0';
+    }
+    else {
+        stdinflush();
+    }
 
     printf("Should text be matched to case-sensitive?\n");
     scanf(" %c", &case_sensitive);
     stdinflush();
-
-    int text_len = strlen(text);
-    int pattern_len = strlen(pattern);
 
     for (int i = 0; i <= text_len - pattern_len; i++) {
         if (custom_strncmp(&text[i], pattern, pattern_len, case_sensitive == 'y')) {
