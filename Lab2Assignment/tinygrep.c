@@ -15,6 +15,11 @@ void stdinflush() {
     }
 }
 
+// Function to remove the newline character from the input
+void remove_newline(char* str) {
+    str[strcspn(str, "\n")] = '\0';
+}
+
 // Function for match case-sensitively or insensitively, handle dot and underscore characters
 int custom_strncmp(const char* text, const char* pattern, int pattern_len, int case_sensitive) {
     for (int i = 0; i < pattern_len; i++) {
@@ -53,17 +58,17 @@ int main() {
     char case_sensitive;
     int match_position = -1;
     
-    printf("Enter a text, up to 35 characters: ");
+    printf("Enter a text, up to 35 characters: \n");
     fgets(text, MAX_TEXT_LENGTH + 1, stdin);
-    text[strcspn(text, "\n")] = '\0';
+    remove_newline(text);
     stdinflush();
 
-    printf("Enter a pattern, up to 35 characters: ");
+    printf("Enter a pattern, up to 35 characters: \n");
     fgets(pattern, MAX_TEXT_LENGTH + 1, stdin);
-    pattern[strcspn(pattern, "\n")] = '\0';
+    remove_newline(pattern);
     stdinflush();
 
-    printf("Should match be case-sensitive (Y/N)? ");
+    printf("Should match be case-sensitive (Y/N)? \n");
     scanf(" %c", &case_sensitive);
     stdinflush();
 
