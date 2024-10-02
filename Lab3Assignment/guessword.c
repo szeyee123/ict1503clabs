@@ -68,7 +68,7 @@ int main() {
 
     // Player 1 enters a word
     do {
-        printf("Player 1, enter a word of no more than 7 letters: \n");
+        printf("Player 1, enter a word of no more than 7 letters:\n");
         scanf("%s", word);
         to_lowercase(word);
         if (!is_word(word)) {
@@ -82,7 +82,7 @@ int main() {
     // Player 2 guessing
     while (incorrect_guesses < 7) {
         display_current_guess(current_guess);
-        printf("Player 2, you have %d guesses remaining. Enter your next guess: \n", 7 - incorrect_guesses);
+        printf("Player 2, you have %d guesses remaining. Enter your next guess:\n", 7 - incorrect_guesses);
         
         scanf(" %c", &guess);
         guess = tolower(guess);
