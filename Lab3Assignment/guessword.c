@@ -97,7 +97,7 @@ int main() {
         // Check if the word has been guessed
         if (word_guessed(current_guess)) {
             display_current_guess(current_guess);
-            printf("Player 2 wins!");
+            printf("Player 2 wins.");
             return 0;
         }
     }
