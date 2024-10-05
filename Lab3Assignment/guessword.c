@@ -84,7 +84,7 @@ int main() {
         scanf("%s", word);
         to_lowercase(word);
         if (!is_word(word)) {
-            printf("Sorry, the word must contain only English letters and be 7 letters or less.\n");
+            printf("Sorry, the word must contain only English letters.\n");
         }
     } while (!is_word(word));
 
