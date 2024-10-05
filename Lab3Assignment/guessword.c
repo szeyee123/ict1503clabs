@@ -116,6 +116,12 @@ int main() {
             continue;
         }
 
+        //If input is space
+        if (strcmp(input, " ") == 0) {
+            incorrect_guesses++;
+            continue;
+        }
+
         // Add guessed letter to the list of guessed letters
         int len = strlen(guessed_letters);
         guessed_letters[len] = guess;
