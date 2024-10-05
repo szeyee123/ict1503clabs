@@ -116,8 +116,8 @@ int main() {
             continue;
         }
 
-        //If input is space
-        if (strcmp(input, " ") == 0) {
+        //If input is empty
+        if (strcmp(input, "\n") == 0) {
             incorrect_guesses++;
             continue;
         }
