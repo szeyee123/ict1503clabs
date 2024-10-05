@@ -96,7 +96,7 @@ int main() {
 
         // Check if the word has been guessed
         if (word_guessed(current_guess)) {
-            printf("Player 2 wins!\n");
+            printf("Player 2 wins.\n");
             return 0;
         }
 
@@ -131,6 +131,6 @@ int main() {
 
     // Player 1 wins if Player 2 exceeds max number of incorrect guesses
     display_current_guess(current_guess);
-    printf("Player 2 has failed to guess the word '%s'. Player 1 wins.\n", word);
+    printf("Player 2 has failed to guess the word %s. Player 1 wins.\n", word);
     return 0;
 }
