@@ -64,10 +64,7 @@ int word_guessed(const char *current_guess) {
 int main() {
     char word[7 + 1], current_guess[7 + 1];
     char guess;
-    char guess_input[10];
     int incorrect_guesses = 0;
-    //int guessed_letters[7] = {0};
-    char previous_guesses[100] = "";
 
     // Player 1 enters a word
     do {
@@ -85,28 +82,6 @@ int main() {
     // Player 2 guessing
     while (incorrect_guesses < 7) {
         display_current_guess(current_guess);
-        printf("Player 2, you have %d guesses remaining. Enter your next guess:\n", 7 - incorrect_guesses);
-        
-        scanf(" %s", guess_input);
-
-        // Check if input is more than one character
-        if (strlen(guess_input) != 1) {
-            continue; 
-        }
-
-        guess = tolower(guess_input[0]);
-
-        // Check if letter has already been guessed
-        if (strchr(previous_guesses, guess)) {
-            continue; 
-        }
-
-        // Check if letter is in word
-        if (letter_in_word(guess, word)) {
-            reveal_letter_in_word(guess, word, current_guess);
-        } else {
-            incorrect_guesses++;
-        }
 
         // Check if the word has been guessed
         if (word_guessed(current_guess)) {
@@ -114,6 +89,19 @@ int main() {
             printf("Player 2 wins.");
             return 0;
         }
+
+        printf("Player 2, you have %d guesses remaining. Enter your next guess:\n", 7 - incorrect_guesses);
+        
+        scanf(" %c", &guess);
+        guess = tolower(guess);
+
+        // Check if letter is in word
+        if (letter_in_word(guess, word)) {
+            reveal_letter_in_word(guess, word, current_guess);
+        } else {
+            incorrect_guesses++;
+        }
+        
     }
 
     // Player 1 wins if Player 2 exceeds max number of incorrect guesses
