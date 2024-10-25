@@ -107,7 +107,7 @@ int main() {
     }
 
     // Print all words in order
-    printf("\nAll the entered words in order:\n");
+    printf("All the entered words in order:\n");
     print_list(head);
 
     // Free the allocated memory
