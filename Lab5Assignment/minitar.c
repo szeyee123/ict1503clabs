@@ -1,3 +1,5 @@
+// 2303631 Tew Sze Yee
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,7 +35,6 @@ void write_null_padded_string(FILE* fp, const char* str, int max_len) {
 
 // Write a file to archive
 void write_file_to_archive(FILE* output_file, const char* filename) {
-    // Get file size
     int file_size = get_file_size(filename);
     if (file_size == -1) {
         return;
@@ -52,6 +53,7 @@ void write_file_to_archive(FILE* output_file, const char* filename) {
     // Write file size (zero-padded)
     mini_header header;
     snprintf(header.size, SIZELEN, "%11d", file_size);
+    header.size[11] = '\0';
     fwrite(header.size, sizeof(char), SIZELEN, output_file);
 
     // Copy file content to archive
