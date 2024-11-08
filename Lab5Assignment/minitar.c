@@ -52,7 +52,7 @@ void write_file_to_archive(FILE* output_file, const char* filename) {
 
     // Write file size (zero-padded)
     mini_header header;
-    snprintf(header.size, SIZELEN, "%11d", file_size);
+    snprintf(header.size, SIZELEN, "%011d", file_size);
     header.size[11] = '\0';
     fwrite(header.size, sizeof(char), SIZELEN, output_file);
 
