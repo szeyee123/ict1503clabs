@@ -1,4 +1,3 @@
-
 // 2303631 Tew Sze Yee
 
 #include <stdio.h>
@@ -7,7 +6,7 @@
 #include <sys/stat.h>
 
 #define NAMSIZ 100   // Maximum length of file name
-#define SIZELEN 12   // Length for size field (zero-padded)
+#define SIZELEN 12   // Length for size field (null-padded)
 #define RECORDSIZE 512
 
 typedef struct {
@@ -26,11 +25,11 @@ int get_file_size(const char* filename) {
 }
 
 // Write null-padded string to file
-void write_null_padded_string(FILE* fp, const char* str, int max_len) {
+void write_padded_string(FILE* fp, const char* str, int max_len, char pad_char) {
     int len = strlen(str);
     fwrite(str, sizeof(char), len, fp);
     for (int i = len; i < max_len; ++i) {
-        fputc('\0', fp); // Null pad string to max_len
+        fputc(pad_char, fp); // Pad string to max_len with specified character
     }
 }
 
@@ -48,13 +47,16 @@ void write_file_to_archive(FILE* output_file, const char* filename) {
         return;
     }
 
-    // Write file name (null-padded)
-    write_null_padded_string(output_file, filename, NAMSIZ);
+    // Write file name (null-padded to 100 bytes)
+    write_padded_string(output_file, filename, NAMSIZ, '\0');
 
-    // Write file size (zero-padded)
+    // Write file size as a plain integer followed by null padding to reach 12 bytes
     char size_str[SIZELEN];
-    snprintf(size_str, SIZELEN, "%-11d", file_size); // Zero-padded to 11 characters
-    fwrite(size_str, sizeof(char), SIZELEN, output_file);
+    int size_len = snprintf(size_str, SIZELEN, "%d", file_size); // Write size as plain integer
+    fwrite(size_str, sizeof(char), size_len, output_file);       // Write the size string
+    for (int i = size_len; i < SIZELEN; ++i) {                   // Pad remaining bytes with nulls
+        fputc('\0', output_file);
+    }
 
     // Copy file content to archive
     char buffer[RECORDSIZE];
