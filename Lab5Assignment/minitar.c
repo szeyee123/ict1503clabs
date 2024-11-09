@@ -52,8 +52,11 @@ void write_file_to_archive(FILE* output_file, const char* filename) {
 
     // Write file size (zero-padded)
     char size_str[SIZELEN];
-    snprintf(size_str, SIZELEN, "%011d", file_size); // Zero-padded to 11 characters
+    snprintf(size_str, SIZELEN, "%d", file_size); // Zero-padded to 11 characters
     fwrite(size_str, sizeof(char), SIZELEN, output_file);
+    for (int i = size_len; i < SIZELEN; ++i) {                   // Pad remaining bytes with nulls
+        fputc('\0', output_file);
+    }
 
     // Copy file content to archive
     char buffer[RECORDSIZE];
